@@ -1,7 +1,16 @@
 const express = require("express");
+const cors = require("cors");
+
 const server = express();
 const articlesRoutes = require("./routes/articles-routes.js");
 server.use(express.json());
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+server.use(cors(corsOptions));
 
 server.use("/api/articles", articlesRoutes);
 
